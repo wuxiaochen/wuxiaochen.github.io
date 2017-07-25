@@ -112,17 +112,17 @@
 
 
 
-<meta name="description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{public:CMyDownloader(IDownloadSink plink):m">
+<meta name="description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{    public:    CMyDownloader(IDownloadSink">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回调">
 <meta property="og:url" content="https://github.com/wuxiaochen/wuxiaochen.github.io/2017/05/26/callbackl/index.html">
 <meta property="og:site_name" content="MatinalShine&#39;s Blog">
-<meta property="og:description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{public:CMyDownloader(IDownloadSink plink):m">
-<meta property="og:updated_time" content="2017-07-25T14:38:04.765Z">
+<meta property="og:description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{    public:    CMyDownloader(IDownloadSink">
+<meta property="og:updated_time" content="2017-07-25T14:47:32.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回调">
-<meta name="twitter:description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{public:CMyDownloader(IDownloadSink plink):m">
+<meta name="twitter:description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{    public:    CMyDownloader(IDownloadSink">
 
 
 
@@ -450,7 +450,7 @@
         <p>#include<iostream></iostream></p>
 <p>#include<stdlib.h><br>using namespace std;</stdlib.h></p>
 <p>//Link 回调方式<br>class IDownloadSink<br>{<br>    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;<br>}</p>
-<p>class CMyDownloader<br>{<br>public:<br>CMyDownloader(IDownloadSink<em> plink):m_pSink(plink)<br>{<br>}<br>void DownLoadFile(const char</em> pURL)<br>{<br>    cout &lt;&lt; “downloading:” &lt;&lt; pURL &lt;&lt; “ “ &lt;&lt; endl;<br>    if(m_pSink)<br>    {<br>        m_pSink-&gt;OnDownLoadFinished(pURL,true);<br>    }<br>}<br>private:<br>    IDownloadSink* m_pSink;<br>}</p>
+<p>class CMyDownloader<br>{<br>    public:<br>    CMyDownloader(IDownloadSink<em> plink):m_pSink(plink)<br>    {<br>    }<br>    void DownLoadFile(const char</em> pURL)<br>    {<br>        cout &lt;&lt; “downloading:” &lt;&lt; pURL &lt;&lt; “ “ &lt;&lt; endl;<br>        if(m_pSink)<br>        {<br>            m_pSink-&gt;OnDownLoadFinished(pURL,true);<br>        }<br>    }<br>    private:<br>        IDownloadSink* m_pSink;<br>}</p>
 <p>class CMyFlie : public IDownloadSink<br>{<br>    void download()<br>    {<br>        CMyDownloader download(this);<br>        download.DownLoadFile(“www.baidu.com”);<br>    }</p>
 <pre><code>virtual void OnDownLoadFinished(const char* pURL, bool OK)
 {
@@ -576,8 +576,8 @@ system(&quot;pause&quot;);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/16/recursion/" rel="next" title="递归问题">
-                <i class="fa fa-chevron-left"></i> 递归问题
+              <a href="/2017/05/26/link/" rel="next" title="链表问题">
+                <i class="fa fa-chevron-left"></i> 链表问题
               </a>
             
           </div>
@@ -585,10 +585,6 @@ system(&quot;pause&quot;);
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/26/link/" rel="prev" title="链表问题">
-                链表问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
