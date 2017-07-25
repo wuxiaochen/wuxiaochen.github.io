@@ -112,17 +112,17 @@
 
 
 
-<meta name="description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{    public:    CMyDownloader(IDownloadSink">
+<meta name="description" content="sink回调 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;iostream&amp;gt;#include&amp;lt;stdlib.h&amp;gt;using namespace std;//Link 回调方式class IDownloadSink&amp;#123;">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回调">
 <meta property="og:url" content="https://github.com/wuxiaochen/wuxiaochen.github.io/2017/05/26/callbackl/index.html">
 <meta property="og:site_name" content="MatinalShine&#39;s Blog">
-<meta property="og:description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{    public:    CMyDownloader(IDownloadSink">
-<meta property="og:updated_time" content="2017-07-25T14:47:32.739Z">
+<meta property="og:description" content="sink回调 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;iostream&amp;gt;#include&amp;lt;stdlib.h&amp;gt;using namespace std;//Link 回调方式class IDownloadSink&amp;#123;">
+<meta property="og:updated_time" content="2017-07-25T14:56:48.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回调">
-<meta name="twitter:description" content="#include #includeusing namespace std; //Link 回调方式class IDownloadSink{    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;} class CMyDownloader{    public:    CMyDownloader(IDownloadSink">
+<meta name="twitter:description" content="sink回调 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;iostream&amp;gt;#include&amp;lt;stdlib.h&amp;gt;using namespace std;//Link 回调方式class IDownloadSink&amp;#123;">
 
 
 
@@ -447,72 +447,8 @@
       
 
       
-        <p>#include<iostream></iostream></p>
-<p>#include<stdlib.h><br>using namespace std;</stdlib.h></p>
-<p>//Link 回调方式<br>class IDownloadSink<br>{<br>    virtual void OnDownLoadFinished(const char* url, bool OK) = 0;<br>}</p>
-<p>class CMyDownloader<br>{<br>    public:<br>    CMyDownloader(IDownloadSink<em> plink):m_pSink(plink)<br>    {<br>    }<br>    void DownLoadFile(const char</em> pURL)<br>    {<br>        cout &lt;&lt; “downloading:” &lt;&lt; pURL &lt;&lt; “ “ &lt;&lt; endl;<br>        if(m_pSink)<br>        {<br>            m_pSink-&gt;OnDownLoadFinished(pURL,true);<br>        }<br>    }<br>    private:<br>        IDownloadSink* m_pSink;<br>}</p>
-<p>class CMyFlie : public IDownloadSink<br>{<br>    void download()<br>    {<br>        CMyDownloader download(this);<br>        download.DownLoadFile(“www.baidu.com”);<br>    }</p>
-<pre><code>virtual void OnDownLoadFinished(const char* pURL, bool OK)
-{
-    cout &lt;&lt; &quot;OnDownloadFinished, URL:&quot; &lt;&lt; pURL &lt;&lt; &quot;    status:&quot; &lt;&lt; bOK &lt;&lt; endl;
-}
-</code></pre><p>}</p>
-<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br>Copyright:ZOWEE<br>Author: wufei<br>Date:2017-07-24<br>Description:下载代理c++类实现<br><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</p>
-<p>#include <iostream></iostream></p>
-<p>#include <vector></vector></p>
-<p>#include <algorithm><br>using namespace std;</algorithm></p>
-<p>class CDownloadDelegateBase<br>{<br>public:<br>    virtual void Fire(const char*pURL, bool bOK) = 0;<br>};</p>
-<p>template<typename o,="" typename="" t=""><br>class CDownloadDelegate : public CDownloadDelegateBase<br>{<br>    typedef void (T::<em>Fun)(const char</em>, bool);</typename></p>
-<p>public:<br>    CDownloadDelegate(O* pObj = NULL, Fun pFun = NULL) : m_pFun(pFun), m_pObj(pObj) {<br>    };</p>
-<pre><code>virtual void Fire(const char*pURL, bool bOK)
-{
-    if (m_pFun != NULL &amp;&amp; m_pObj != NULL)
-    {
-        (m_pObj-&gt;*m_pFun)(pURL, bOK);
-    }
-}
-</code></pre><p>private:<br>    Fun m_pFun;<br>    O* m_pObj;<br>};</p>
-<p>template<typename o,="" typename="" t=""><br>CDownloadDelegate<o, t=""><em> MakeDelegate(O</em> pObject, void(T::<em>pFun)(const char</em> pURL, bool))<br>{<br>    return new CDownloadDelegate<o, t="">(pObject, pFun);<br>}</o,></o,></typename></p>
-<p>class CDownloadEvent<br>{<br>public:<br>    ~CDownloadEvent() {<br>        vector<cdownloaddelegatebase*> ::iterator itr = m_arDelegate.begin();<br>        while (itr != m_arDelegate.end())<br>        {<br>            delete *itr;<br>            ++itr;<br>        }<br>        m_arDelegate.clear();<br>    }</cdownloaddelegatebase*></p>
-<pre><code>void operator += (CDownloadDelegateBase* p)
-{
-    m_arDelegate.push_back(p);
-}
-
-void operator -= (CDownloadDelegateBase* p)
-{
-    ITR itr = remove(m_arDelegate.begin(), m_arDelegate.end(), p);
-    ITR itrTemp = itr;
-    while (itrTemp != m_arDelegate.end())
-    {
-        delete *itr;
-        ++itr;
-    }
-    m_arDelegate.erase(itr, m_arDelegate.end());
-}
-
-void operator ()(const char* pURL, bool bOK)
-{
-    ITR itrTemp = m_arDelegate.begin();
-    while (itrTemp != m_arDelegate.end())
-    {
-        (*itrTemp)-&gt;Fire(pURL, bOK);
-        ++itrTemp;
-    }
-}
-</code></pre><p>private:<br>    vector<cdownloaddelegatebase*> m_arDelegate;<br>    typedef vector<cdownloaddelegatebase*>::iterator ITR;<br>};</cdownloaddelegatebase*></cdownloaddelegatebase*></p>
-<p>class CMyDownloaderEx<br>{<br>public:<br>    void DownloadFile(const char* pURL)<br>    {<br>        cout &lt;&lt; “downloading:” &lt;&lt; pURL &lt;&lt; “…” &lt;&lt; endl;<br>        downloadEvent(pURL, true);<br>    }<br>    //相当于下载事件，先让它成为代理，才能去下载东西<br>    CDownloadEvent downloadEvent;<br>};</p>
-<p>class CMyFileEx<br>{<br>public:<br>    void download()<br>    {<br>        CMyDownloaderEx downloader;<br>        downloader.downloadEvent += MakeDelegate(this, &amp;CMyFileEx::OnDownloadFinished);<br>        downloader.DownloadFile(“www.baidu.com”);<br>    }</p>
-<pre><code>virtual void OnDownloadFinished(const char* pURL,bool bOK)
-{
-    cout &lt;&lt; &quot;OnDownloadFinished,URL:&quot; &lt;&lt; pURL &lt;&lt; &quot; status:&quot; &lt;&lt; bOK &lt;&lt; endl;
-}
-</code></pre><p>};</p>
-<p>int main()<br>{<br>    CMyFlie myfile;<br>    myfile.download();</p>
-<pre><code>CMyFileEx ff;
-ff.download();
-system(&quot;pause&quot;);
-</code></pre><p>}</p>
+        <h1 id="sink回调"><a href="#sink回调" class="headerlink" title=" sink回调 "></a><center> <strong>sink回调</strong> </center></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">//Link 回调方式</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">IDownloadSink</span></span></div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnDownLoadFinished</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* url, <span class="keyword">bool</span> OK)</span> </span>= <span class="number">0</span>;	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CMyDownloader</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">public</span>:</div><div class="line">	CMyDownloader(IDownloadSink* plink):m_pSink(plink)</div><div class="line">	&#123;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">DownLoadFile</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pURL)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"downloading:"</span> &lt;&lt; pURL &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">		<span class="keyword">if</span>(m_pSink)</div><div class="line">		&#123;</div><div class="line">			m_pSink-&gt;OnDownLoadFinished(pURL,<span class="literal">true</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">private</span>:</div><div class="line">		IDownloadSink* m_pSink;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CMyFlie</span> :</span> <span class="keyword">public</span> IDownloadSink</div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">download</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="function">CMyDownloader <span class="title">download</span><span class="params">(<span class="keyword">this</span>)</span></span>;</div><div class="line">		download.DownLoadFile(<span class="string">"www.baidu.com"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnDownLoadFinished</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pURL, <span class="keyword">bool</span> OK)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"OnDownloadFinished, URL:"</span> &lt;&lt; pURL &lt;&lt; <span class="string">"    status:"</span> &lt;&lt; bOK &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	CMyFlie myfile;</div><div class="line">	myfile.download();</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="delegate回调"><a href="#delegate回调" class="headerlink" title=" delegate回调 "></a><center> <strong>delegate回调</strong> </center></h1><p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br>Copyright:ZOWEE<br>Author: wufei<br>Date:2017-07-24<br>Description:下载代理c++类实现<br><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDownloadDelegateBase</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Fire</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*pURL, <span class="keyword">bool</span> bOK)</span> </span>= <span class="number">0</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> O, <span class="keyword">typename</span> T&gt;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDownloadDelegate</span> :</span> <span class="keyword">public</span> CDownloadDelegateBase</div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(T::*Fun)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*, <span class="keyword">bool</span>)</span></span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">	CDownloadDelegate(O* pObj = <span class="literal">NULL</span>, Fun pFun = <span class="literal">NULL</span>) : m_pFun(pFun), m_pObj(pObj) &#123;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Fire</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*pURL, <span class="keyword">bool</span> bOK)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span> (m_pFun != <span class="literal">NULL</span> &amp;&amp; m_pObj != <span class="literal">NULL</span>)</div><div class="line">		&#123;</div><div class="line">			(m_pObj-&gt;*m_pFun)(pURL, bOK);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">	Fun m_pFun;</div><div class="line">	O* m_pObj;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> O, <span class="keyword">typename</span> T&gt;</div><div class="line">CDownloadDelegate&lt;O, T&gt;* MakeDelegate(O* pObject, <span class="keyword">void</span>(T::*pFun)(<span class="keyword">const</span> <span class="keyword">char</span>* pURL, <span class="keyword">bool</span>))</div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> CDownloadDelegate&lt;O, T&gt;(pObject, pFun);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDownloadEvent</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	~CDownloadEvent() &#123;</div><div class="line">		<span class="built_in">vector</span>&lt;CDownloadDelegateBase*&gt; ::iterator itr = m_arDelegate.begin();</div><div class="line">		<span class="keyword">while</span> (itr != m_arDelegate.end())</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">delete</span> *itr;</div><div class="line">			++itr;</div><div class="line">		&#125;</div><div class="line">		m_arDelegate.clear();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">void</span> <span class="keyword">operator</span> += (CDownloadDelegateBase* p)</div><div class="line">	&#123;</div><div class="line">		m_arDelegate.push_back(p);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">void</span> <span class="keyword">operator</span> -= (CDownloadDelegateBase* p)</div><div class="line">	&#123;</div><div class="line">		ITR itr = remove(m_arDelegate.begin(), m_arDelegate.end(), p);</div><div class="line">		ITR itrTemp = itr;</div><div class="line">		<span class="keyword">while</span> (itrTemp != m_arDelegate.end())</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">delete</span> *itr;</div><div class="line">			++itr;</div><div class="line">		&#125;</div><div class="line">		m_arDelegate.erase(itr, m_arDelegate.end());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pURL, <span class="keyword">bool</span> bOK)</span></span></div><div class="line">	&#123;</div><div class="line">		ITR itrTemp = m_arDelegate.begin();</div><div class="line">		<span class="keyword">while</span> (itrTemp != m_arDelegate.end())</div><div class="line">		&#123;</div><div class="line">			(*itrTemp)-&gt;Fire(pURL, bOK);</div><div class="line">			++itrTemp;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">	<span class="built_in">vector</span>&lt;CDownloadDelegateBase*&gt; m_arDelegate;</div><div class="line">	<span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;CDownloadDelegateBase*&gt;::iterator ITR;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CMyDownloaderEx</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">DownloadFile</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pURL)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"downloading:"</span> &lt;&lt; pURL &lt;&lt; <span class="string">"..."</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">		downloadEvent(pURL, <span class="literal">true</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//相当于下载事件，先让它成为代理，才能去下载东西</span></div><div class="line">	CDownloadEvent downloadEvent;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CMyFileEx</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">download</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		CMyDownloaderEx downloader;</div><div class="line">		downloader.downloadEvent += MakeDelegate(<span class="keyword">this</span>, &amp;CMyFileEx::OnDownloadFinished);</div><div class="line">		downloader.DownloadFile(<span class="string">"www.baidu.com"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnDownloadFinished</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pURL,<span class="keyword">bool</span> bOK)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"OnDownloadFinished,URL:"</span> &lt;&lt; pURL &lt;&lt; <span class="string">" status:"</span> &lt;&lt; bOK &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	CMyFileEx ff;</div><div class="line">	ff.download();</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -658,8 +594,17 @@ system(&quot;pause&quot;);
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/temp.jpg"
@@ -764,6 +709,22 @@ system(&quot;pause&quot;);
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sink回调"><span class="nav-number">1.</span> <span class="nav-text"> sink回调 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#delegate回调"><span class="nav-number">2.</span> <span class="nav-text"> delegate回调 </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
